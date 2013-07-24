@@ -1,5 +1,3 @@
-require "securerandom"
-
 module FutebolApp
   class Member
     extend Forwardable

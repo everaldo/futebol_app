@@ -1,5 +1,3 @@
-require "securerandom"
-
 module FutebolApp
   class NullTeam
     def add_match
