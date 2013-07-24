@@ -1,6 +1,7 @@
 # FutebolApp
 
-TODO: Write a gem description
+Gerencie campeonatos de Futebol
+
 
 ## Installation
 
