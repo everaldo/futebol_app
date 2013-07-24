@@ -2,6 +2,8 @@ require "securerandom"
 
 module FutebolApp
   class NullTeam
+    def add_match
+    end
   end
 
   class Match
@@ -11,6 +13,13 @@ module FutebolApp
       @id = options.fetch :id, SecureRandom.uuid
       @home = options.fetch :home, NullTeam
       @visitor = options.fetch :visitor, NullTeam
+      home.add_match self
+      visitor.add_match self
     end
+
+    def to_s
+      "#{home} vs #{visitor}"
+    end
+
   end
 end
