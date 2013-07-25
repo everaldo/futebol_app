@@ -146,6 +146,27 @@ module FutebolApp
         it "raises goal difference" do
           expect(subject.goal_difference).to eq(goals - goals_suffered)
         end
+        
+        context "doesn't compute more than once the same match" do
+          before do
+            subject.loss!(result)
+          end
+
+          it "doesn't change game statistics" do
+            expect(subject.points).to eq 0
+            expect(subject.games_played).to eq 1
+            expect(subject.wins).to eq 0
+            expect(subject.losses).to eq 1
+            expect(subject.draws).to eq 0
+            expect(subject.goals_scored).to eq(goals)
+            expect(subject.goals_against).to eq(goals_suffered)
+            expect(subject.goal_difference).to eq(goals - goals_suffered)
+          end
+
+
+        end
+
+
       end
 
       context "after drawing" do
@@ -188,8 +209,23 @@ module FutebolApp
         it "keeps goal_difference in zero" do
           expect(subject.goal_difference).to eq 0
         end
+        context "doesn't compute more than once the same match" do
+          before do
+            subject.draw!(result)
+          end
+
+          it "doesn't change game statistics" do
+            expect(subject.points).to eq 1
+            expect(subject.games_played).to eq 1
+            expect(subject.wins).to eq 0
+            expect(subject.losses).to eq 0
+            expect(subject.draws).to eq 1
+            expect(subject.goals_scored).to eq(goals)
+            expect(subject.goals_against).to eq(goals_suffered)
+            expect(subject.goal_difference).to eq 0
+          end
+        end
       end
     end
-
   end
 end

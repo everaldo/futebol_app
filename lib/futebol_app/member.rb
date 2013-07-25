@@ -38,6 +38,8 @@ module FutebolApp
     end
 
     def loss!(result)
+      return if results.include?(result.id)
+      @results[result.id] = result
       @games_played +=1
       @losses +=1
       @goals_scored += result.goals_for(self)
@@ -45,6 +47,8 @@ module FutebolApp
     end
 
     def draw!(result)
+      return if results.include?(result.id)
+      @results[result.id] = result
       @points += 1
       @games_played +=1
       @draws +=1
