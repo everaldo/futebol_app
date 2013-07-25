@@ -1,4 +1,9 @@
 module FutebolApp
+  class NullTeam
+    def add_match
+    end
+  end
+
   class Team
     attr_reader :players
     attr_accessor :name, :matches
@@ -14,10 +19,8 @@ module FutebolApp
       matches << match
     end
 
-
     def to_s
       name
     end
-
   end
 end
