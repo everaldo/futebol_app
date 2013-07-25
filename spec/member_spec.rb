@@ -227,5 +227,42 @@ module FutebolApp
         end
       end
     end
+
+    context "with a reset!" do
+      let(:result) { double("a match result", id: "an match id") }
+      let!(:goals) { Random.rand 3..5 }
+      let!(:goals_suffered) { Random.rand 1..3 }
+
+      before do
+        result.stub(:goals_for).and_return(goals)
+        result.stub(:goals_for_opponent).and_return(goals_suffered)
+        subject.win!(result)
+        subject.reset!
+      end
+      
+      it "resets game statistics" do
+        expect(subject.points).to eq 0
+        expect(subject.games_played).to eq 0
+        expect(subject.wins).to eq 0
+        expect(subject.losses).to eq 0
+        expect(subject.draws).to eq 0
+        expect(subject.goals_scored).to eq  0
+        expect(subject.goals_against).to eq 0
+        expect(subject.goal_difference).to eq 0
+      end
+        
+
+      it "permits recomputation of results" do
+        subject.win!(result)
+        expect(subject.points).to eq 3
+        expect(subject.games_played).to eq 1
+        expect(subject.wins).to eq 1
+        expect(subject.losses).to eq 0
+        expect(subject.draws).to eq 0
+        expect(subject.goals_scored).to eq  goals
+        expect(subject.goals_against).to eq goals_suffered
+        expect(subject.goal_difference).to eq(goals - goals_suffered)
+      end
+    end
   end
 end
