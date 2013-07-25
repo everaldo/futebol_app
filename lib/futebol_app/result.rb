@@ -5,7 +5,7 @@ module FutebolApp
     attr_reader :goals, :match, :winner, :loser
     attr_accessor :status
 
-    def_delegators :match, :home, :visitors
+    def_delegators :match, :home, :visitors, :id
 
 
     def initialize(options )
