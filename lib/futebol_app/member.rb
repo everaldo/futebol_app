@@ -45,6 +45,26 @@ module FutebolApp
         @goals_scored += result.goals_for(member)
         @goals_against += result.goals_for_opponent(member)
       end
+
+      def <=>(other)
+        return  -1 if points > other.points
+        return   1 if other.points > points
+        return  -1 if games_played < other.games_played
+        return   1 if other.games_played < games_played
+        return  -1 if wins > other.wins
+        return   1 if other.wins > wins
+        return  -1 if draws > other.draws
+        return   1 if other.draws > draws
+        return  -1 if losses < other.losses
+        return   1 if other.losses < losses
+        return  -1 if goals_scored > other.goals_scored
+        return   1 if other.goals_scored > goals_scored
+        return  -1 if goals_against < other.goals_against
+        return   1 if other.goals_against < goals_against
+        return  -1 if member.name < other.name
+        return   1
+      end
+
     end
     
     
@@ -84,6 +104,12 @@ module FutebolApp
     def goal_difference
       goals_scored - goals_against
     end
+
+
+    def <=>(other)
+      @stats <=> other
+    end
+
 
     def to_s
       name

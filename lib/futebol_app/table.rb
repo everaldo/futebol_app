@@ -15,6 +15,16 @@ module FutebolApp
       results << result
     end
 
+    def rank
+      members.sort 
+    end
+
+    def rank!
+      compute!
+      rank
+    end
+
+
     def compute!
       reset_members!
       results.each do |result|

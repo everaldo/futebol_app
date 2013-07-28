@@ -19,6 +19,11 @@ module FutebolApp
       table.add_result result
     end
 
+    def rank
+      table.rank
+    end
+
+
     private
     def generate_members
       @members = []
