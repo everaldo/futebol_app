@@ -8,10 +8,17 @@ module FutebolApp
     def number
       "undefined"
     end
+
+    def team
+      "undefined"
+    end
   end
 
 
   class Player
+    attr_reader :name, :number, :team
+
+
     def initialize(options = {})
       @name = options.fetch :name, "undefined"
       @number = options.fetch :number, "undefined"
