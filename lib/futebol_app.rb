@@ -7,6 +7,7 @@ require "futebol_app/team"
 require "futebol_app/match"
 require "futebol_app/result"
 require "futebol_app/table"
+require "futebol_app/member_statistics"
 require "futebol_app/member"
 require "futebol_app/league"
 
